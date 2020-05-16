@@ -1,16 +1,15 @@
 from django.views.generic import TemplateView
 from chartjs.views.lines import BaseLineChartView
+
+from .retrieve_club import retrieve_club
 from .retrieve_data import retrieve
 import datetime
+from .models import Exercises
 
 class LineChartJSONView(BaseLineChartView):
     def get_labels(self):
-        data = retrieve()
-        timestamps = []
-        for i in data:
-            timestamps.append(datetime.datetime.strptime(i['start_date'], '%Y-%m-%dT%H:%M:%SZ'))
-        """Return 7 labels for the x-axis."""
-        return timestamps
+        names = ["Total Distance/Total Time"]
+        return names
 
     def get_providers(self):
 
@@ -19,16 +18,16 @@ class LineChartJSONView(BaseLineChartView):
 
     def get_data(self):
         """Return 3 datasets to plot."""
-        data = retrieve()
         totalDistance = 0
         distanceTotal = []
         totalMoving = 0
         movingTotal = []
-        for i in data:
-            totalDistance += round(i['distance']/1000, 2)
-            distanceTotal.append(totalDistance)
-            totalMoving += round(((i['moving_time']/60)/60), 0)
-            movingTotal.append(totalMoving)
+        start_point =True
+        for i in Exercises.objects.filter().order_by("id"):
+            totalDistance += round(i.distance/1000, 2)
+            totalMoving += round(((i.moving_time/60)/60), 0)
+        distanceTotal.append(totalDistance)
+        movingTotal.append(totalMoving)
         return [distanceTotal,
                 movingTotal]
 
