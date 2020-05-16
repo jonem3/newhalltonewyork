@@ -10,15 +10,23 @@
         font-family: courier;
         font-size: 160%;
     }
+    canvas{
+         width: 45vw;
+         height: border-box;
+    }
     body, html {
-        {% load static %}
-        background-image: url(/static/field_image.jpg);
+{#        {% load static %}#}
+        background-image: url(/static/20200421_174011.jpg);
         background-color: lightcyan;
         height: 100%;
         background-repeat: repeat;
         background-position: center;
         background-size: cover;
         margin: 0;
+    }
+    iframe{
+        height: available;
+        width: border-box;
     }
     .header {
         float: left;
@@ -42,7 +50,11 @@
         border-radius: 10px;
         backdrop-filter: blur(10px);
         background-color: hsla(240, 100%, 100%, 0.75);
-
+        position: relative;
+        width: 47vw;
+        height: fit-content;
+        overflow: hidden;
+        padding: 1px;
     }
     *{
         padding: 5px;
@@ -68,7 +80,7 @@
             <div class="col content">
                 <div class="background">
                     <center><p>Here you can see our progress!</p></center>
-                    <center><canvas id="myChart" width="750" height="500" ></canvas></center>
+                    <center><canvas id="myChart"></canvas></center>
                 </div>
             </div>
             <div class="col content raw">
@@ -80,41 +92,43 @@
         </div>
         <div class="row">
                 <div class="background">
-                <iframe width="600" height="338" src="https://www.youtube.com/embed/P0TiSwwIBlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <center><iframe width="800" height="400" src="https://www.youtube.com/embed/P0TiSwwIBlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
                 </div>
         </div>
 
 
 
-
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
         <script type="text/javascript">
             $.get('{% url "line_chart_json" %}', function(data) {
                 let ctx = $("#myChart").get(0).getContext("2d");
                 let chart = new Chart(ctx, {
-                    type: 'bar', data: data,
+                    type: 'line', data: data,
                     options: {
-                        tension: 0,
-                        responsive: false,
-                            annotation: {
-                                drawTime: 'afterDatasetsDraw',
-                                annotations: [
-                                {
-                                    drawTime: 'afterDraw',
-                                    type: 'line',
-                                    mode: 'horizontal',
-                                    scaleID: 'y-axis-0',
-                                    value: 50,
-                                    borderColor: 'red',
-                                    borderWidth: 5,
-                                    label:{
-                                        enabled: true,
-                                        content: 'New York!'
-                                    }
-                                }
+                        bezierCurve: false,
+                        scales: {
+                          xAxes: [{
+                              ticks: {
+                                  display: false
+                              }
+                          }],
+                          yAxes: [{
+                                id: 'Total Distance (KM)',
+                                type: 'linear',
+                                position: 'left'
+                              },
+                              {
+                                id: 'Total Time (Hours)',
+                                type: 'linear',
+                                position: 'right'
+                              }
                             ]
-                            },
+                        },
+                        tension: 0,
+
+                        responsive: false,
+
                         }
                 });
                 ctx.style.height = '128px';

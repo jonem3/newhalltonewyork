@@ -34,9 +34,7 @@ def retrieve_club():
     start_point = True
     try:
         for i in reversed(obs_data_complete):
-            if start_point:
-                if i['athlete']['firstname'] == "Matthew" and i['name'] == "Flitch Way Dunmow - Stansted" and float(i['distance']) == 22410.1:
-                    start_point = False
+
             if not start_point:
                 exercise = Exercises.objects.filter(
                     name=i['name'],
@@ -50,5 +48,9 @@ def retrieve_club():
                     exercise.moving_time = i['moving_time']
                     exercise.total_elevation_gain = i['total_elevation_gain']
                     exercise.save()
+            if start_point:
+                if i['athlete']['firstname'] == "Matthew" and i['name'] == "Flitch Way Dunmow - Stansted" and float(
+                        i['distance']) == 22410.1:
+                    start_point = False
     except Exception as e:
         pass
