@@ -1,0 +1,4 @@
+position: absolute;
+        height: 58vh;
+        width: 45vw;
+        border-radius: 10px;

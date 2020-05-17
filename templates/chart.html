@@ -1,4 +1,5 @@
 {% load static %}
+<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
 <style>
     h1 {
         color: black;
@@ -7,12 +8,12 @@
     }
     p  {
         color: black;
-        font-family: courier;
+        font-family: 'Oxygen';
         font-size: 160%;
     }
     canvas{
          width: 45vw;
-         height: border-box;
+         height: 50vh;
     }
     body, html {
 {#        {% load static %}#}
@@ -25,13 +26,30 @@
         margin: 0;
     }
     iframe{
-        height: available;
-        width: border-box;
+        position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
     }
     .header {
         float: left;
         width: 100%;
         border: 1px solid #000;
+    }
+    .container{
+        position: relative;
+        overflow: hidden;
+        width: 50%;
+        padding-top: 100%;
+    }
+    .video{
+        position: relative;
+        overflow: hidden;
+        width: 45vw;
+        padding-top: 56.25%;
     }
     .row {
     display: flex;
@@ -52,13 +70,20 @@
         background-color: hsla(240, 100%, 100%, 0.75);
         position: relative;
         width: 47vw;
-        height: fit-content;
+        height: 60vh;
         overflow: hidden;
-        padding: 1px;
+        padding-top: 5px;
     }
     *{
         padding: 5px;
         margin: 0;
+    }
+    .vertical-center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
     }
 </style>
 <html>
@@ -86,13 +111,24 @@
             <div class="col content raw">
                 <div class="background">
                     <p>To donate to the GoFundMe for the NHS see below:</p>
-                    <center><iframe src="https://www.gofundme.com/f/new-hall-to-new-york/widget/large" height="500" width="450"></iframe></center>
+                    <center>
+                        <div class="container">
+                            <iframe src="https://www.gofundme.com/f/new-hall-to-new-york/widget/large" frameborder="0"></iframe>
+                        </div>
+                    </center>
                 </div>
             </div>
         </div>
         <div class="row">
                 <div class="background">
-                <center><iframe width="800" height="400" src="https://www.youtube.com/embed/P0TiSwwIBlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+                    <center>
+                        <div class="vertical-center">
+                            <div class="video">
+                                <iframe width="800" height="400" src="https://www.youtube.com/embed/P0TiSwwIBlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                    </center>
                 </div>
         </div>
 
