@@ -60,7 +60,7 @@ def distances_json(request):
 
     for i in Exercises.objects.all().order_by("id"):
         total_distance += i.distance / 1000
-    total_remaining = 5617 - total_distance
+    total_remaining = 5614 - total_distance
     remaining_total = [total_remaining]
     distance_total = [total_distance]
     names = [str(total_distance)+"/"+str(total_remaining)]
