@@ -4,6 +4,8 @@ from django.views.decorators.cache import cache_page
 
 TOTAL_DISTANCE = "Total Distance (KM)"
 TOTAL_TIME = "Total Time (Hours)"
+TOTAL_REMAINING = "Total Distance Remaining (KM)"
+OVERALLDISTANCE = 5617
 
 
 @cache_page(500)
@@ -49,3 +51,40 @@ def chart_json(request):
     }
     return JsonResponse(jason)
 
+@cache_page(500)
+def distances_json(request):
+
+    total_distance = 0
+    total_remaining = 0
+    start_point = True
+
+    for i in Exercises.objects.all().order_by("id"):
+        total_distance += i.distance / 1000
+    total_remaining = 5617 - total_distance
+    remaining_total = [total_remaining]
+    distance_total = [total_distance]
+    names = [str(total_distance)+"/"+str(total_remaining)]
+    jason = {
+        "labels": names,
+        "datasets": [
+            {
+                "label": TOTAL_DISTANCE,
+                "data": distance_total,
+                "name": TOTAL_DISTANCE,
+                "backgroundColor": "rgba(51, 102, 255, 0.5)",
+                "borderColor": "rgba(51, 102, 255, 1)",
+                "pointBackgroundColor": "rgba(51, 102, 255, 1)",
+                "pointBorderColor": "#fff",
+            },
+            {
+                "label": TOTAL_REMAINING,
+                "data": remaining_total,
+                "name": TOTAL_REMAINING,
+                "backgroundColor": "rgba(171, 9, 0, 0.7)",
+                "borderColor": "rgba(171, 9, 0, 1)",
+                "pointBackgroundColor": "rgba(171, 9, 0, 1)",
+                "pointBorderColor": "#fff",
+            }
+        ]
+    }
+    return JsonResponse(jason)
