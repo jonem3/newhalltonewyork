@@ -22,8 +22,8 @@ def chart_json(request):
         total_moving += (i.moving_time / 60) / 60
         distances.append({'t': i.time_stamp, 'y': round(total_distance, 2)})
         times.append({'t': i.time_stamp, 'y': round(total_moving, 2)})
-        names.append(round(total_distance, 0))
-        #names.append(i.time_stamp)
+        #names.append(round(total_distance, 0))
+        names.append(i.time_stamp)
 
     jason = {
         "labels": names,
