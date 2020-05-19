@@ -228,7 +228,7 @@
     $.get('{% url "distances_chart_json" %}', function (data) {
         let ctx = $("#distancesChart").get(0).getContext("2d");
         let chart = new Chart(ctx, {
-            type: 'bar', data: data,
+            type: 'pie', data: data,
             options: {
                 scales: {
                     xAxes: [{

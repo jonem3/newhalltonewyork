@@ -64,28 +64,19 @@ def distances_json(request):
     total_remaining = 5614 - total_distance
     remaining_total = [total_remaining]
     distance_total = [total_distance]
-    names = [str(total_distance)+"/"+str(total_remaining)]
+    data = [distance_total, remaining_total]
     jason = {
-        "labels": names,
+        "labels": ["Distance Covered", "Distance Remaining"],
         "datasets": [
             {
                 "label": TOTAL_DISTANCE,
-                "data": distance_total,
+                "data": data,
                 "name": TOTAL_DISTANCE,
-                "backgroundColor": "rgba(51, 102, 255, 0.5)",
-                "borderColor": "rgba(51, 102, 255, 1)",
-                "pointBackgroundColor": "rgba(51, 102, 255, 1)",
+                "backgroundColor": ["rgba(51, 102, 255, 0.5)", "rgba(171, 9, 0, 0.7)"],
+                "borderColor": ["rgba(51, 102, 255, 1)", "rgba(171, 9, 0, 1)"],
+                "pointBackgroundColor": ["rgba(51, 102, 255, 1)", "rgba(171, 9, 0, 1)"],
                 "pointBorderColor": "#fff",
             },
-            {
-                "label": TOTAL_REMAINING,
-                "data": remaining_total,
-                "name": TOTAL_REMAINING,
-                "backgroundColor": "rgba(171, 9, 0, 0.7)",
-                "borderColor": "rgba(171, 9, 0, 1)",
-                "pointBackgroundColor": "rgba(171, 9, 0, 1)",
-                "pointBorderColor": "#fff",
-            }
         ]
     }
     return JsonResponse(jason)
