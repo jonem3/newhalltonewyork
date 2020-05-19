@@ -1,6 +1,7 @@
 import requests
 import json
 from .models import Exercises
+from django.utils import timezone
 from datetime import datetime
 import time
 
@@ -47,6 +48,7 @@ def retrieve_club():
                     exercise.distance = i['distance']
                     exercise.moving_time = i['moving_time']
                     exercise.total_elevation_gain = i['total_elevation_gain']
+                    exercise.time_stamp = timezone.now()
                     exercise.save()
             if start_point:
                 if i['athlete']['firstname'] == "Matthew" and i['name'] == "Flitch Way Dunmow - Stansted" and float(
