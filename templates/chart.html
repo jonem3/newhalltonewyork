@@ -1,5 +1,7 @@
 {% load static %}
 <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <style>
     h1 {
         color: black;
@@ -14,12 +16,12 @@
     }
 
     canvas {
-        width: 45vw;
-        height: 50vh;
+        width: available;
+        height: available;
     }
 
-    body, html {
-    {#        {% load static %}#} background-image: url(/static/20200421_174011.jpg);
+    html {
+    {#        {% load static %}#} background-image: url(/static/field_image.jpg);
         background-color: lightcyan;
         height: 100%;
         background-repeat: repeat;
@@ -34,53 +36,20 @@
         left: 0;
         bottom: 0;
         right: 0;
-        width: 100%;
-        height: 100%;
     }
 
-    .header {
-        float: left;
-        width: 100%;
-        border: 1px solid #000;
-    }
-
-    .container {
-        position: relative;
-        overflow: hidden;
-        width: 50%;
-        padding-top: 100%;
-    }
-
-    .video {
-        position: relative;
-        overflow: hidden;
-        width: 45vw;
-        padding-top: 56.25%;
-    }
-
-    .row {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .col {
-        flex: 1;
-    }
-
-    .boxed {
+    body {
         border: 2px solid black;
         border-radius: 10px;
         background-color: hsla(240, 100%, 100%, 0.75);
+        position: relative;
     }
+
 
     .background {
-        border: 2px solid black;
         border-radius: 10px;
-        backdrop-filter: blur(10px);
         background-color: hsla(240, 100%, 100%, 0.75);
         position: relative;
-        width: 47vw;
-        height: 60vh;
         overflow: hidden;
         padding-top: 5px;
     }
@@ -104,86 +73,107 @@
     <!--[if lte IE 8]>
             <script src="{% static 'js/excanvas.js' %}"></script>
         <![endif]-->
+    <center><img src=/static/logo%201%5B3266%5D.png alt="New Hall to New York" width="400px" height="auto"></center>
 </head>
 <body>
-<center><img src=/static/logo%201%5B3266%5D.png alt="New Hall to New York" width="400px" height="auto"></center>
 
-<div class="boxed">
-    <center><p>Do you want to join us in making a difference? We are raising money in aid of ASSOCIATION OF NHS
-        CHARITIES and every donation will help. Thank you in advance for your contribution to this cause that means so
-        much to us all.<br><br>
-        We shall be running/walking/cycling 3km a day for 30 days (15th May - 14th June) which means that we,
-        collectively, will be on track for covering approximately the same distance from New Hall to New York!</p>
-    </center>
+<div class="container-fluid">
+    <div class="row">
+    <div class="background">
+        <center><p>Do you want to join us in making a difference? We are raising money in aid of ASSOCIATION OF NHS
+            CHARITIES and every donation will help. Thank you in advance for your contribution to this cause that means
+            so
+            much to us all.<br><br>
+            We shall be running/walking/cycling 3km a day for 30 days (15th May - 14th June) which means that we,
+            collectively, will be on track for covering approximately the same distance from New Hall to New York!</p>
+        </center>
+    </div>
+
 </div>
 
-<div class="row">
-    <div class="col content">
-        <div class="background">
-            <center><p>Here you can see our progress!</p></center>
-            <center>
-                <canvas id="myChart"></canvas>
-            </center>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="background">
+                <center><p>Here you can see our progress!</p></center>
+                <center>
+                    <canvas id="myChart"></canvas>
+                </center>
+            </div>
         </div>
+
+        <div class="col-6">
+            <div class="background">
+                <p>To donate to the GoFundMe for the NHS see below:</p>
+                <center>
+                    {#                    <div class="embed-responsive embed-responsive-1by1">#}
+                    <embed height="500px" width="100%"
+                           src="https://www.gofundme.com/mvc.php?route=widgets/mediawidget&fund=new-hall-to-new-york&image=1&coinfo=1&preview=1"
+                           type="text/html"></embed>
+                    {#                    </div>#}
+                </center>
+            </div>
+        </div>
+
     </div>
-    <div class="col content raw">
-        <div class="background">
-            <p>To donate to the GoFundMe for the NHS see below:</p>
-            <center>
-                <div class="container">
-                    <iframe src="https://www.gofundme.com/f/new-hall-to-new-york/widget/large" frameborder="0"></iframe>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="background">
+
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="800" height="400" src="https://www.youtube.com/embed/P0TiSwwIBlU"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen class="embed-responsive-item" width="100%"></iframe>
                 </div>
-            </center>
+
+            </div>
+
+        </div>
+        <div class="col-lg">
+            <div class="background">
+                <center><p>Distance Covered and Remaining!</p></center>
+                <center>
+                    <canvas id="distancesChart"></canvas>
+                </center>
+            </div>
         </div>
     </div>
+
+
 </div>
-<div class="row">
-    <div class="col content">
-        <div class="background">
-            <center>
-                <div class="vertical-center">
-                    <div class="video">
-                        <iframe width="800" height="400" src="https://www.youtube.com/embed/P0TiSwwIBlU" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                    </div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="background">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://www.youtube.com/embed/XNfmnQf1TqQ" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen class="embed-responsive-item" width="100%"></iframe>
                 </div>
-            </center>
+            </div>
         </div>
     </div>
-    <div class="col content">
-        <div class="background">
-            <center><p>Distance Covered and Remaining!</p></center>
-            <center>
-                <canvas id="distancesChart"></canvas>
-            </center>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col content">
-        <div class="background">
-            <center>
-                <div class="vertical-center">
 
 
-                    <div class="video">
-
-                        <iframe width="800" height="400" src="https://www.youtube.com/embed/XNfmnQf1TqQ" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-
-                    </div>
-                </div>
-            </center>
-        </div>
-    </div>
 </div>
 
-
+<p style="font-size: small">
+    Website created by Matthew Jones
+</p>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
+
 <script type="text/javascript">
     $.get('{% url "line_chart_json" %}', function (data) {
         let ctx = $("#myChart").get(0).getContext("2d");
@@ -241,6 +231,14 @@
         });
     });
 </script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>
