@@ -31,6 +31,7 @@ def retrieve_club():
             obs_data = obs_status
             print(obs_data)
     obs_data_complete = obs_data_complete.replace("[]", "")
+    obs_data_complete = obs_data_complete.replace("][", ",")
     obs_data_complete = json.loads(obs_data_complete)
     start_point = True
     try:
