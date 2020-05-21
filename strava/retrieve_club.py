@@ -1,3 +1,4 @@
+import pytz
 import requests
 import json
 from .models import Exercises
@@ -33,6 +34,7 @@ def retrieve_club():
     obs_data_complete = obs_data_complete.replace("[]", "")
     obs_data_complete = obs_data_complete.replace("][", ",")
     obs_data_complete = json.loads(obs_data_complete)
+    #print(timezone.localtime(timezone.now()))
     start_point = True
     try:
         for i in reversed(obs_data_complete):
@@ -49,7 +51,8 @@ def retrieve_club():
                     exercise.distance = i['distance']
                     exercise.moving_time = i['moving_time']
                     exercise.total_elevation_gain = i['total_elevation_gain']
-                    exercise.time_stamp = timezone.now()
+                    timezone.activate(pytz.timezone("Europe/London"))
+                    exercise.time_stamp = timezone.localtime(timezone.now())
                     exercise.save()
             if start_point:
                 if i['athlete']['firstname'] == "Matthew" and i['name'] == "Flitch Way Dunmow - Stansted" and float(
