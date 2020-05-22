@@ -143,3 +143,42 @@ update exercises set time_stamp = '2020-05-19 18:32' where id =141;
 update exercises set time_stamp = '2020-05-19 19:13' where id =142;
 update exercises set time_stamp = '2020-05-19 20:02' where id =143;
 update exercises set time_stamp = '2020-05-19 20:01' where id =144;
+
+
+
+update exercises set time_stamp = '2020-05-15 17:11' where id =153;
+update exercises set time_stamp = '2020-05-16 17:12' where id =154;
+update exercises set time_stamp = '2020-05-17 14:30' where id =155;
+update exercises set time_stamp = '2020-05-18 17:25' where id =156;
+update exercises set time_stamp = '2020-05-19 15:51' where id =157;
+update exercises set time_stamp = '2020-05-18 17:25' where id =158;
+update exercises set time_stamp = '2020-05-19 20:00' where id =159;
+update exercises set time_stamp = '2020-05-20 10:17' where id =160;
+update exercises set time_stamp = '2020-05-20 14:18' where id =161;
+update exercises set time_stamp = '2020-05-20 12:45' where id =162;
+update exercises set time_stamp = '2020-05-20 19:39' where id =163;
+update exercises set time_stamp = '2020-05-20 16:36' where id =164;
+update exercises set time_stamp = '2020-05-20 16:43' where id =165;
+update exercises set time_stamp = '2020-05-20 16:44' where id =166;
+update exercises set time_stamp = '2020-05-20 16:52' where id =167;
+update exercises set time_stamp = '2020-05-20 16:56' where id =168;
+update exercises set time_stamp = '2020-05-20 17:07' where id =169;
+update exercises set time_stamp = '2020-05-20 19:54' where id =170;
+update exercises set time_stamp = '2020-05-20 16:43' where id =171;
+update exercises set time_stamp = '2020-05-20 19:44' where id =172;
+update exercises set time_stamp = '2020-05-20 17:37' where id =173;
+update exercises set time_stamp = '2020-05-20 18:05' where id =174;
+update exercises set time_stamp = '2020-05-20 18:21' where id =175;
+update exercises set time_stamp = '2020-05-20 19:59' where id =176;
+update exercises set time_stamp = '2020-05-20 18:49' where id =177;
+update exercises set time_stamp = '2020-05-20 20:17' where id =178;
+update exercises set time_stamp = '2020-05-20 19:27' where id =179;
+update exercises set time_stamp = '2020-05-20 15:56' where id =180;
+update exercises set time_stamp = '2020-05-20 18:32' where id =181;
+update exercises set time_stamp = '2020-05-20 19:27' where id =182;
+update exercises set time_stamp = '2020-05-20 19:00' where id =183;
+update exercises set time_stamp = '2020-05-20 19:59' where id =184;
+update exercises set time_stamp = '2020-05-20 21:15' where id =185;
+update exercises set time_stamp = '2020-05-21 07:35' where id =186;
+update exercises set time_stamp = '2020-05-21 07:29' where id =187;
+
