@@ -1,7 +1,11 @@
 {% load static %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css"
+      type="text/css">
 <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <style>
     h1 {
         color: black;
@@ -65,6 +69,11 @@
         top: 50%;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
+    }
+
+    .map {
+        height: 400px;
+        width: 100%;
     }
 </style>
 <html>
@@ -162,6 +171,101 @@
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen class="embed-responsive-item"></iframe>
                 </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="background">
+                <div id="map" class="map"></div>
+                <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+                <script type="text/javascript"
+                        src="https://geographiclib.sourceforge.io/scripts/geographiclib.js">
+                </script>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+                <script src={% static 'js/arc.js' %}></script>
+                <script type="text/javascript">
+                    $.get('{% url "distance_chart_json" %}', function (data) {
+                        let map = new ol.Map({
+                            target: 'map',
+                            layers: [
+                                new ol.layer.Tile({
+                                    source: new ol.source.OSM()
+                                })
+                            ],
+                            view: new ol.View({
+                                center: ol.proj.fromLonLat([-40.24, 45.03]),
+                                zoom: 3
+                            })
+                        });
+                        let points = [[0.5085414, 51.7642137], [-73.9877313, 40.757978]];
+                        {% comment %}
+                                                for (let i = 0; i < points.length; i++) {
+                                                    points[i] = ol.proj.transform(points[i], 'EPSG:4326', 'EPSG:3857');
+                                                }
+
+                                                let featureLine = new ol.Feature({
+                                                    geometry: new ol.geom.LineString(points)
+                                                });
+
+                                                let vectorLine = new ol.source.Vector({});
+                                                vectorLine.addFeature(featureLine);
+
+                                                let vectorLineLayer = new ol.layer.Vector({
+                                                    source: vectorLine,
+                                                    style: new ol.style.Style({
+                                                        fill: new ol.style.Fill({color: '#00FF00', weight: 4}),
+                                                        stroke: new ol.style.Stroke({color: '#00FF00', width: 4})
+                                                    })
+                                                });
+                                                map.addLayer(vectorLineLayer);{% endcomment %}
+                        var generator = new arc.GreatCircle({x: 0.5085414, y: 51.7642137}, {x: -73.9877313, y: 40.757978});
+                        var n = 50; // n of points
+                        var coords = generator.Arc(n).geometries[0].coords;
+                        var geojson = {
+                            "type": "Feature",
+                            "geometry": {"type": "LineString", "coordinates": coords},
+                            "properties": null
+                        };
+
+                        console.log(JSON.stringify(geojson));
+
+                        var format = new ol.format.GeoJSON({
+                            featureProjection: "EPSG:3857"
+                        });
+
+                        var vectorSource = new ol.source.Vector({
+                            features: format.readFeatures(geojson)
+                        });
+
+                        var vectorLayer = new ol.layer.Vector({
+                            source: vectorSource,
+                            style: new ol.style.Style({
+                                stroke: new ol.style.Stroke({
+                                    color: 'red',
+                                    width: 3
+                                })
+                            })
+                        });
+                        map.addLayer(vectorLayer);
+
+
+                        let Geodesic = GeographicLib.Geodesic,
+                            geod = Geodesic.WGS84;
+                        let l = geod.InverseLine(51.7642137, 0.5085414, 40.757978, -73.9877313),
+                            p = l.Position(l.s13 * data.percentage);
+                        console.log(p.lat2.toFixed(8) + " " + p.lon2.toFixed(8));
+                        let layer = new ol.layer.Vector({
+                            source: new ol.source.Vector({
+                                features: [
+                                    new ol.Feature({
+                                        geometry: new ol.geom.Point(ol.proj.fromLonLat([p.lon2.toFixed(5), p.lat2.toFixed(5)]))
+                                    })
+                                ]
+                            })
+                        });
+                        map.addLayer(layer);
+                    });
+
+                </script>
             </div>
         </div>
     </div>

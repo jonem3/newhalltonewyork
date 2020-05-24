@@ -80,3 +80,18 @@ def distances_json(request):
         ]
     }
     return JsonResponse(jason)
+
+@cache_page(500)
+def distance_json(request):
+    total_distance = 0
+    finishing_distance = 5614
+    for i in Exercises.objects.all().order_by("id"):
+        total_distance += i.distance / 1000
+
+    percentage = total_distance/finishing_distance
+    if percentage > 1:
+        percentage = 1
+    jason = {
+        "percentage": percentage
+    }
+    return JsonResponse(jason)
