@@ -43,7 +43,6 @@
     }
 
     body {
-        border: 2px solid black;
         border-radius: 10px;
         background-color: hsla(240, 100%, 100%, 0.75);
         position: relative;
@@ -78,6 +77,7 @@
 </style>
 <html>
 <head>
+    <link rel="shortcut icon" href="{% static 'favicon.png' type='image/x-icon' %}">
     <title>New Hall to New York</title>
     <!--[if lte IE 8]>
             <script src="{% static 'js/excanvas.js' %}"></script>
@@ -201,28 +201,8 @@
                             })
                         });
                         let points = [[0.5085414, 51.7642137], [-73.9877313, 40.757978]];
-                        {% comment %}
-                                                for (let i = 0; i < points.length; i++) {
-                                                    points[i] = ol.proj.transform(points[i], 'EPSG:4326', 'EPSG:3857');
-                                                }
-
-                                                let featureLine = new ol.Feature({
-                                                    geometry: new ol.geom.LineString(points)
-                                                });
-
-                                                let vectorLine = new ol.source.Vector({});
-                                                vectorLine.addFeature(featureLine);
-
-                                                let vectorLineLayer = new ol.layer.Vector({
-                                                    source: vectorLine,
-                                                    style: new ol.style.Style({
-                                                        fill: new ol.style.Fill({color: '#00FF00', weight: 4}),
-                                                        stroke: new ol.style.Stroke({color: '#00FF00', width: 4})
-                                                    })
-                                                });
-                                                map.addLayer(vectorLineLayer);{% endcomment %}
                         var generator = new arc.GreatCircle({x: 0.5085414, y: 51.7642137}, {x: -73.9877313, y: 40.757978});
-                        var n = 50; // n of points
+                        var n = 200; // n of points
                         var coords = generator.Arc(n).geometries[0].coords;
                         var geojson = {
                             "type": "Feature",
