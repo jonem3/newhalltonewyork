@@ -105,9 +105,7 @@
 
     </div>
 
-</div>
 
-<div class="container-fluid">
 
     <div class="row">
         <div class="col-lg-6">
@@ -133,10 +131,7 @@
         </div>
 
     </div>
-</div>
 
-
-<div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
             <div class="background">
@@ -162,10 +157,7 @@
     </div>
 
 
-</div>
 
-
-<div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
             <div class="background">
@@ -202,15 +194,13 @@
                         });
                         let points = [[0.5085414, 51.7642137], [-73.9877313, 40.757978]];
                         var generator = new arc.GreatCircle({x: 0.5085414, y: 51.7642137}, {x: -73.9877313, y: 40.757978});
-                        var n = 200; // n of points
+                        var n = 500; // n of points
                         var coords = generator.Arc(n).geometries[0].coords;
                         var geojson = {
                             "type": "Feature",
                             "geometry": {"type": "LineString", "coordinates": coords},
                             "properties": null
                         };
-
-                        console.log(JSON.stringify(geojson));
 
                         var format = new ol.format.GeoJSON({
                             featureProjection: "EPSG:3857"
@@ -236,7 +226,6 @@
                             geod = Geodesic.WGS84;
                         let l = geod.InverseLine(51.7642137, 0.5085414, 40.757978, -73.9877313),
                             p = l.Position(l.s13 * data.percentage);
-                        console.log(p.lat2.toFixed(8) + " " + p.lon2.toFixed(8));
                         let layer = new ol.layer.Vector({
                             source: new ol.source.Vector({
                                 features: [
@@ -291,14 +280,8 @@
                             position: 'right'
                         }]
                 },
-                {#tension: 0,#}
-                {##}
-                {#responsive: false,#}
-
             }
         });
-        ctx.style.height = '128px';
-        ctx.style.width = '128px';
     });
 </script>
 
