@@ -5,6 +5,7 @@ Django==3.0.7
 django-braces==1.14.0
 django-chartjs==2.1.0
 django-highcharts==0.1.7
+django-mobile==0.7.0
 idna==2.9
 pyaml==20.4.0
 pyswagger==0.8.39
