@@ -79,7 +79,7 @@
 <html lang="en">
 <head>
     <link rel="shortcut icon" href="{% static 'favicon.png' type='image/x-icon' %}">
-    <title>New Hall to New York Progress</title>
+    <title>New Hall to New York Videos</title>
     <!--[if lte IE 8]>
             <script src="{% static 'js/excanvas.js' %}"></script>
         <![endif]-->
@@ -99,15 +99,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/map/">Map</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/videos/">Videos</a>
-                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Progress (Charts) <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Videos <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/charts/">Progress (Charts)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.gofundme.com/f/new-hall-to-new-york?utm_source=widget&utm_medium=referral&utm_campaign=p_cp+share-sheet">GoFundMe Page</a>
                 </li>
+
             </ul>
         </div>
     </nav>
@@ -115,93 +116,55 @@
     <center><img src=/static/logo%201%5B3266%5D.png alt="New Hall to New York" width="400px" height="auto"></center>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <center>
             <div class="background">
-                <center><p>Here you can see our progress!</p></center>
-                <center>
-                    <canvas id="myChart"></canvas>
+                <center><p>Below are some videos created by members of the team which will tell you about what we are doing
+                </p>
                 </center>
             </div>
+        </center>
         </div>
-            <div class="col-lg-6">
-            <div class="background">
-                <center><p>Distance Covered and Remaining!</p></center>
-                <center>
-                    <canvas id="distancesChart"></canvas>
-                </center>
-            </div>
-        </div>
-        </div>
+
+
 
     </div>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="background">
 
-    <script type="text/javascript">
-        $.get('{% url "line_chart_json" %}', function (data) {
-            let ctx = $("#myChart").get(0).getContext("2d");
-            let chart = new Chart(ctx, {
-                type: 'line',
-                data: data,
-                options: {
-                    {#bezierCurve: false,#}
-                    scales: {
-                        xAxes: [{
-                            type: 'time',
-                            distribution: 'linear',
-                            time: {
-                                unit: 'day'
-                            }
-                        }],
-                        yAxes: [{
-                            id: 'Total Distance (KM)',
-                            type: 'linear',
-                            position: 'left'
-                        },
-                            {
-                                id: 'Total Time (Hours)',
-                                type: 'linear',
-                                position: 'right'
-                            }]
-                    },
-                }
-            });
-        });
-    </script>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="800" height="400" src="https://www.youtube.com/embed/P0TiSwwIBlU"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen class="embed-responsive-item" width="100%"></iframe>
+                </div>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-    <script type="text/javascript">
-        $.get('{% url "distances_chart_json" %}', function (data) {
-            let ctx = $("#distancesChart").get(0).getContext("2d");
-            let chart = new Chart(ctx, {
-                type: 'pie', data: data,
-                options: {
-                    scales: {
-                        xAxes: [{
-                            ticks: {
-                                display: false
-                            }
-                        }]
-                    }
-                }
-            });
-        });
-    </script>
+            </div>
 
+        </div>
+        <div class="col-lg-6">
+            <div class="background">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/E3rGjY2WpO0" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen class="embed-responsive-item"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"></script>
-    </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>

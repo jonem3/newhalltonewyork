@@ -34,5 +34,8 @@ class LineChartJSONView(BaseLineChartView):
                 moving_total]
 
 
+main = TemplateView.as_view(template_name='main.html')
 line_chart = TemplateView.as_view(template_name='chart.html')
+map_view = TemplateView.as_view(template_name='map.html')
+videos_view = TemplateView.as_view(template_name='videos.html')
 line_chart_json = LineChartJSONView.as_view()
