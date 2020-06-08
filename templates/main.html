@@ -130,7 +130,7 @@
                     means
                     so
                     much to us all.<br><br>
-                    We shall be running/walking/cycling 3km a day for 30 days (15th May - 14th June) which means that
+                    We shall be running/walking/cycling 3km a day for 30 days (15th May - 13th June) which means that
                     we,
                     collectively, will be on track for covering approximately the same distance from New Hall to New
                     York!
@@ -159,9 +159,51 @@
             </div>
         </div>
 
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="background">
+
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="800" height="400" src="https://www.youtube.com/embed/P0TiSwwIBlU"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen class="embed-responsive-item" width="100%"></iframe>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <div class="background">
+                <center><p>Distance Covered and Remaining!</p></center>
+                <center>
+                    <canvas id="distancesChart"></canvas>
+                </center>
+            </div>
+        </div>
     </div>
 
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+    <script type="text/javascript">
+        $.get('{% url "distances_chart_json" %}', function (data) {
+            let ctx = $("#distancesChart").get(0).getContext("2d");
+            let chart = new Chart(ctx, {
+                type: 'pie', data: data,
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                display: false
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
